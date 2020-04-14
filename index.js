@@ -83,16 +83,12 @@ app.get('/webhook', (req, res) => {
   var text = received_message.text.trim().toLowerCase();
    if  (text.includes("hi")) {
     myC();
-
-    var text2 = received_message.text.trim().toLowerCase();
-    response = {"text": `Hi there, please use the menu or say "Start Over".`}
+    response = {"text": `We received your file.`}
   }
   else if  (text.includes("pi")) {
-    myP();
-    response = {"text": `Hi there, please use the menu or say "Start Over".`}
+    response = {"text": `Sorry, we cannot recognize "${text}" at this moment.`}
   }
    else {
-    var text2 = received_message.text.trim().toLowerCase();
     response = {"text": `Sorry, we cannot recognize "${text}" at this moment.`}
   }
   
@@ -121,12 +117,12 @@ var request = https.get(att, async function(response) {
 
 
 async function myC() {
+    let response;
     var data = fs.readFileSync('sample.jpg');
     results = await wireCode(data);
-    console.log(results.generated_webpage_html);
-    console.log(results.generated_webpage_css);
+    var yhtml = results.generated_webpage_html;
 fs.writeFile("output.html", results.generated_webpage_html, 'utf8', function (err) {
-    if (err) {
+  if (err) {
         console.log("An error occured while writing JSON Object to File.");
         return console.log(err);
     }
@@ -139,6 +135,7 @@ fs.writeFile("autocodeai-form.css", results.generated_webpage_css, 'utf8', funct
     }
     console.log("CSS file has been saved."); 
 });
+return yhtml;
 };
 
 
@@ -156,8 +153,6 @@ fs.writeFile("autocodeai-form.css", results.generated_webpage_css, 'utf8', funct
     callSendAPI(sender_psid, response);
   }
   
-
-
   
   // Sends response messages via the Send API
   function callSendAPI(sender_psid, response) {
