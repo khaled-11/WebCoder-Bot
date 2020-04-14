@@ -1,0 +1,37 @@
+{
+  "name": "webcoder-bot",
+  "version": "1.0.0",
+  "description": "ChatBot that will translate website wire frames in images into initial HTML & CSS code. It will help deploying webpages as well.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaled-11/WebCoder-Bot.git"
+  },
+  "keywords": [
+    "Chatbot",
+    "WireFrame-to-code",
+    "ML"
+  ],
+  "author": "Khaled Abouseada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khaled-11/WebCoder-Bot/issues"
+  },
+  "homepage": "https://github.com/khaled-11/WebCoder-Bot#readme",
+  "dependencies": {
+    "aws-sdk": "latest",
+    "body-parser": "latest",
+    "dotenv": "^8.2.0",
+    "ejs": "latest",
+    "express": "latest",
+    "fs": "latest",
+    "https": "^1.0.0",
+    "lodash": "latest",
+    "nodemailer": "^6.4.6",
+    "request": "^2.88.2"
+  }
+}
