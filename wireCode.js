@@ -22,9 +22,7 @@ module.exports = async buffer => {
           let error = data['error'];
           let result = data['Body'];
           let newResult = JSON.parse(result) //.toStr('utf8');
-          if (err) {
-            console.log(err);
-          }
+
 
           return newResult;
 
