@@ -290,7 +290,7 @@ callSendAPI(sender_psid, response);
         }
       }
   }else if (payload === 'TRANSLATE') {
-    response = { "text": 'We generate an intial code from wire-frames in images using AI. Please send a wire-frame image to try.' }
+    response = { "text": 'We generate an intial code from wire-frames in images using AI. Please send a wire-frame image to try. (Please send a .jpg or .png image that is less than 4 mb and make the wire-frame as clear as possible.' }
 }else if (payload === 'UPLOAD') {
   response = { 
     "attachment":{
@@ -312,7 +312,7 @@ callSendAPI(sender_psid, response);
   response = { "text": 'Please Enter Your Email.' }
 }else if (payload === 'RUN') {
   myC(sender_psid);
-  response = { "text": 'Please wait while we are building your intial code. This intial HTML & CSS code will make it easier to build your website.' }
+  response = { "text": 'Please wait while we are building your intial code. This intial HTML & CSS code will make it easier to build your website. If nothing happened within 1 minute, this means the image is not compatible. If so, please send another Wire Frame Image, or say Start Over to go back.' }
 }else if (payload === 'VIEW') {
   app.get(`/${sender_psid}/sample.html`, function(_req, res) {
     res.sendFile(path.join(path.resolve(), `./views/${sender_psid}/sample.html`)); 
