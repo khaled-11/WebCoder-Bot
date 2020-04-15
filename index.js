@@ -297,7 +297,7 @@ callSendAPI(sender_psid, response);
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"This tools allows you to upload (ONE) HTML & CSS file and access it any where.",
+        "text":'This tools allows you to upload (ONE) HTML & CSS file and access it any where. Say "Start Over" or "Hi" to go back after you upload.',
         "buttons":[
           {
             "type":"web_url",
@@ -349,11 +349,10 @@ callSendAPI(sender_psid, response);
   if (!fs.existsSync(`./views/${sender_psid}`)){
     fs.mkdirSync(`./views/${sender_psid}`);
     fs.writeFile(`./views/${sender_psid}/index.html`,``,function(err) {
-if (err) {
-throw err;
-}
-    })
-    }
+      if (err) {
+      throw err;
+      }
+          })}
   response = { 
     "attachment":{
       "type":"template",
