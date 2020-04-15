@@ -108,13 +108,13 @@ app.get('/webhook', (req, res) => {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
   var text = received_message.text.trim().toLowerCase();
-   if  (text.includes("hi")) {
+   if  (text.includes("hi") || text.icludes("start over")) {
     response = { 
       "attachment":{
         "type":"template",
         "payload":{
           "template_type":"button",
-          "text":"Welcome to TLopia (AI Website Coder & Cloud Uploader ChatBot). Please choose how can we assist you today?",
+          "text":'Welcome to TLopia (AI Website Coder & Cloud Uploader ChatBot). Please choose how can we assist you today? You may say "Hi" or "Start Over" at any time for main menu.',
           "buttons":[
             {
               "type":"postback",
@@ -341,7 +341,7 @@ callSendAPI(sender_psid, response);
 }else if (payload === 'YES_EMAIL') {
   sendEmail.sendConfirmation(em_send,sender_psid);
   console.log(em_send);
-  response = { "text": 'We sent the files to your Email. Please check and we are waiting for you to uplaod your website soon!' }
+  response = { "text": 'We sent the files to your Email. Please check and we are waiting for you to uplaod your website soon! You may say "Hi" or "Start Over" at any time to go back.' }
 }else if (payload === 'LINK') {
   app.get(`/${sender_psid}`, function(_req, res) {
     res.sendFile(path.join(path.resolve(), `./views/${sender_psid}/index.html`));
