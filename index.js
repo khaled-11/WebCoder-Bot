@@ -31,7 +31,7 @@ app.post("/api/Upload", function(req, res) {
 
           return res.end("Something went wrong!");
       }
-      return res.end("File uploaded sucessfully!");
+      return res.end("File uploaded sucessfully! Please close this page and go back to the coversation for your lightning fast link.");
   });
 });
 
@@ -108,7 +108,7 @@ app.get('/webhook', (req, res) => {
       // Create the payload for a basic text message, which
       // will be added to the body of our request to the Send API
   var text = received_message.text.trim().toLowerCase();
-   if  (text.includes("hi") || text.icludes("start over")) {
+   if  (text.includes("hi") || text.includes("start over")) {
     response = { 
       "attachment":{
         "type":"template",
@@ -302,7 +302,7 @@ callSendAPI(sender_psid, response);
           {
             "type":"web_url",
             "url":`https://tlopia.com/uploader`,
-            "title":"Click here to start upload"
+            "title":"Click here to upload"
           }
         ]
       }
@@ -322,7 +322,7 @@ callSendAPI(sender_psid, response);
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"Please click below to view the code live. After you finish, you can select email to send it to you.",
+        "text":"Please click below to view the code live. After you finish, you can select email to send it to you, or ay Start Over for Main Menu.",
         "buttons":[
           {
             "type":"web_url",
@@ -341,14 +341,13 @@ callSendAPI(sender_psid, response);
 }else if (payload === 'YES_EMAIL') {
   sendEmail.sendConfirmation(em_send,sender_psid);
   console.log(em_send);
-  response = { "text": 'We sent the files to your Email. Please check and we are waiting for you to uplaod your website soon! You may say "Hi" or "Start Over" at any time to go back.' }
+  response = { "text": 'We sent the files to your Email. Please check your email and we are waiting for you to uplaod your website soon! You may say "Hi" or "Start Over" at any time to go back.' }
 }else if (payload === 'LINK') {
   app.get(`/${sender_psid}`, function(_req, res) {
     res.sendFile(path.join(path.resolve(), `./views/${sender_psid}/index.html`));
   });
   if (!fs.existsSync(`./views/${sender_psid}`)){
     fs.mkdirSync(`./views/${sender_psid}`);
-    if (!fs.existsSync(`./views/${sender_psid}/index.html`))
     fs.writeFile(`./views/${sender_psid}/index.html`,``,function(err) {
 if (err) {
 throw err;
@@ -360,7 +359,7 @@ throw err;
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"Please click below to open your link. This link will point to any HTML file which you will upload using our tool. Just copy the link, share, and enjpy!",
+        "text":"Please click below to open your link. This link will point to any HTML file which you will upload using our tool. Just copy the link, share, and enjoy!",
         "buttons":[
           {
             "type":"web_url",
@@ -372,7 +371,7 @@ throw err;
     }
   }
 }else{
-    response = { "text": 'Something went Wrong!!' }
+    response = { "text": 'Something went Wrong!! Say Start Over for Main Menu.' }
 }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
