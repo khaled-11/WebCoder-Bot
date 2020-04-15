@@ -19,9 +19,14 @@ module.exports = async buffer => {
   const request = sagemakerruntime.invokeEndpoint(params);
       const data = await request.promise();
           // in case no blocks are found return undefined
-
+          let error = data['error'];
           let result = data['Body'];
           let newResult = JSON.parse(result) //.toStr('utf8');
-         
+          if (err) {
+            console.log(err);
+          }
+
           return newResult;
+
+    
         };
